@@ -1,0 +1,31 @@
+int Solution::solve(string a) {
+    int n = a.size();
+    string rev = a;
+    reverse(rev.begin(), rev.end());
+    string temp = a + "#" + rev;
+    // cout<<temp<<;
+    int new_n = temp.size();
+    int j=0;
+    int i=1;
+    vector<int> v(new_n, 0);
+    while(i < new_n)
+    {
+        if(temp[i] == temp[j])
+        {
+            j++;
+            v[i] = j;
+            //cout<<v[i]<<" ";
+            i++;
+        }
+        else if(j == 0)
+        {
+            v[i] = 0;
+            i++;
+        }
+        else j = v[j-1];
+    }
+    //cout<<v[new_n-1];
+    int value = v[new_n-1];
+    return n - value;
+    
+}
