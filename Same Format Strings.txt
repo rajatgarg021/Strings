@@ -1,0 +1,43 @@
+int Solution::solve(const string a, const string b) {
+    int n1 = a.size();
+    int n2 = b.size();
+    int i=0;
+    int j=0;
+        while(i < n1 || j < n2)
+        {
+            if(n1 < n2)
+            {
+                if(a[i] == b[j])
+                {
+                    while(a[i] == b[j])
+                    {
+                        //cout<<b[j]<<" ";
+                        j++;
+                    }
+                    
+                }
+                else
+                {
+                    return 0;
+                }
+                i++;
+            }
+            else
+            {
+                if(a[i] == b[j])
+                {
+                    while(a[i] == b[j])
+                    {
+                        i++;
+                    }
+                }
+                else
+                {
+                    return 0;
+                }
+                j++;
+            }
+        }
+    return 1;
+    
+}
