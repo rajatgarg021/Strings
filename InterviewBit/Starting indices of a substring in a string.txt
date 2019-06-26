@@ -1,0 +1,37 @@
+vector<int> Solution::solve(string a, vector<string> &b) {
+    int n = a.size();
+    int nb = b.size();
+    int m = b[0].size();
+    int total = nb*m;
+    
+    map<string, int> mpb;
+    
+    for(int i=0;i<nb;i++)
+    {
+        mpb[b[i]]++;
+        //cout<<mpb[b[i]]<<" ";
+    }
+    vector<int> v;
+    for(int i=0;i<n-total+1;i++)
+    {
+        map<string, int> mpa;
+        int j = i;
+        while(j < (i+total))
+        {
+            string temp;
+            int k = j;
+            for(k=0;k<m;k++)
+            {
+                temp += a[k+j];
+            }
+            //cout<<temp<<" ";
+            mpa[temp]++;
+            j += m;
+        }
+        if(mpa == mpb)
+        {
+            v.push_back(i);
+        }
+    }
+    return v;
+}
