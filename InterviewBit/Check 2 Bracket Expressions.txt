@@ -1,0 +1,43 @@
+string fxn(string a)
+{
+    stack<int> s;
+    bool flag=false;;
+    for(int i=0; i<a.length(); i++)
+    {
+        if(a[i]=='(')
+            s.push(i);
+        else if(a[i]==')')
+        {
+            s.pop();
+            flag=false;
+        }
+        else if(!s.empty())
+        {
+            int ind = s.top()-1;
+            if(a[ind] == '-')
+                flag=true;
+        }
+        else if(a[i]=='+' || a[i]=='-')
+            if(flag)
+                a[i]=='+' ? a[i]='-' : a[i]='+';
+    }
+    return a;
+}
+string remo(string a)
+{
+    int len=a.length();
+    if(a[0]=='(')
+        return a.substr(1, a.length()-2);
+    return a;
+}
+int Solution::solve(string a, string b)
+{
+    a=remo(a);
+    b=remo(b);
+    a=fxn(a);
+    b=fxn(b);
+    if(a==b)
+        return 1;
+    return 0;
+}
+
