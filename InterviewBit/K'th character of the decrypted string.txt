@@ -1,0 +1,47 @@
+string Solution::solve(string a, int k) {
+    int n = a.size();
+    int i, j;
+    i=0;
+    int num;
+    int len;
+    int freq;
+    
+    while(i < n)
+    {
+        j=i;
+        len = 0;
+        freq = 0;
+        while(j < n && isalpha(a[j]))
+        {
+            j++;
+            len++;
+        }
+        while(j < n && isdigit(a[j]))
+        {
+            
+            freq = freq*10 + (a[j]-'0');
+            j++;
+            
+        }
+        
+        num = len*freq;
+        
+        
+        if(k > num)
+        {
+            k -= num;
+            i=j;
+        }
+        else
+        {
+            k--;
+            k = k%len;
+            string ans="";
+            ans+=a[i+k];
+            return ans;
+        }
+    }
+    string s1="";
+    s1+=a[k-1];
+    return s1; 
+}
